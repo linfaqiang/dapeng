@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>大鹏快讯</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<link rel="stylesheet" type="text/css" href="css/wappublic.css">
+	<link rel="stylesheet" type="text/css" href="css/wapactive.css">
+	<script type="text/javascript" src="js/fontSize.js"></script>
+	<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+</head>
+<body>
+    <!--header-->
+    <header>
+       <ol>
+         <li><a href="javascript:;">文明景区</a></li>
+         <li class="liActive"><a href="javascript:;">文明行动</a></li>
+         <li><a href="javascript:;">文明示范</a></li>
+       </ol>
+    </header>
+    <section>
+       <ul class="img-list" style="display: none;">
+         <li>
+           <a href="javascript:;">
+             <div class="img-wrap">
+                <img src="images/banner/pic01.png">
+             </div>
+             <div class="content">
+                <h4>撤桶行动1</h4>
+                <p>
+                  <span>2016-8-26</span>
+                  <span>999</span>
+                </p>
+             </div>
+           </a>
+         </li>
+         <li>
+           <a href="javascript:;">
+             <div class="img-wrap">
+                <img src="images/banner/pic02.png">
+             </div>
+             <div class="content">
+                <h4>撤桶行动</h4>
+                <p>
+                  <span>2016-8-26</span>
+                  <span>999</span>
+                </p>
+             </div>
+           </a>
+         </li>
+         <li>
+           <a href="javascript:;">
+             <div class="img-wrap">
+                <img src="images/banner/pic2.jpg">
+             </div>
+             <div class="content">
+                <h4>撤桶行动</h4>
+                <p>
+                  <span>2016-8-26</span>
+                  <span>999</span>
+                </p>
+             </div>
+           </a>
+         </li>
+       </ul>
+       <ul class="img-list">
+         <li>
+           <a href="javascript:;">
+             <div class="img-wrap">
+                <img src="images/banner/pic01.png">
+             </div>
+             <div class="content">
+                <h4>撤桶行动2</h4>
+                <p>
+                  <span>2016-8-26</span>
+                  <span>999</span>
+                </p>
+             </div>
+           </a>
+         </li>
+         <li>
+           <a href="javascript:;">
+             <div class="img-wrap">
+                <img src="images/banner/pic02.png">
+             </div>
+             <div class="content">
+                <h4>撤桶行动</h4>
+                <p>
+                  <span>2016-8-26</span>
+                  <span>999</span>
+                </p>
+             </div>
+           </a>
+         </li>
+         <li>
+           <a href="javascript:;">
+             <div class="img-wrap">
+                <img src="images/banner/pic2.jpg">
+             </div>
+             <div class="content">
+                <h4>撤桶行动</h4>
+                <p>
+                  <span>2016-8-26</span>
+                  <span>999</span>
+                </p>
+             </div>
+           </a>
+         </li>
+       </ul>
+       <ul class="img-list" style="display: none;">
+         <li>
+           <a href="javascript:;">
+             <div class="img-wrap">
+                <img src="images/banner/pic01.png">
+             </div>
+             <div class="content">
+                <h4>撤桶行动3</h4>
+                <p>
+                  <span>2016-8-26</span>
+                  <span>999</span>
+                </p>
+             </div>
+           </a>
+         </li>
+         <li>
+           <a href="javascript:;">
+             <div class="img-wrap">
+                <img src="images/banner/pic02.png">
+             </div>
+             <div class="content">
+                <h4>撤桶行动</h4>
+                <p>
+                  <span>2016-8-26</span>
+                  <span>999</span>
+                </p>
+             </div>
+           </a>
+         </li>
+         <li>
+           <a href="javascript:;">
+             <div class="img-wrap">
+                <img src="images/banner/pic2.jpg">
+             </div>
+             <div class="content">
+                <h4>撤桶行动</h4>
+                <p>
+                  <span>2016-8-26</span>
+                  <span>999</span>
+                </p>
+             </div>
+           </a>
+         </li>
+       </ul>
+    </section>
+    <footer>上滑加载更多&gt;&gt;</footer>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('header ol li').on('touchend',function(){
+                $('.img-list').hide().eq($(this).index()).show();
+                $('header ol li').removeClass('liActive').eq($(this).index()).addClass('liActive');
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var clientHeight=document.documentElement.clientHeight;
+            window.onscroll=function(){
+            var scrollHeight=document.documentElement.scrollHeight;
+            var distance=scrollHeight-clientHeight-20;
+            if(document.body.scrollTop>=distance){
+              var str='<li><a href="javascript:;"><div class="img-wrap"><img src="images/banner/pic01.png"></div><div class="content"><h4>撤桶行动</h4><p><span>2016-8-26</span><span>999</span></p></div></a></li>';
+              $(".img-list").append(str);
+            }
+          }
+        });
+    </script>
+</body>
+</html>

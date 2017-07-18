@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>大鹏快讯</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+  <link rel="stylesheet" type="text/css" href="css/swiper-3.3.1.min.css">
+	<link rel="stylesheet" type="text/css" href="css/wappublic.css">
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<script type="text/javascript" src="js/fontSize.js"></script>
+	<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+  <script type="text/javascript" src="js/swiper-3.3.1.min.js"></script>
+</head>
+<body>
+    <!--header-->
+    <header class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <a href="javascript:;">
+            <img src="images/banner/pic8.jpg" >
+          </a>
+        </div>
+        <div class="swiper-slide">
+          <a href="javascript:;">
+            <img src="images/banner/pic8.jpg" >
+          </a>             
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </header>
+    <!--nav-->
+    <nav>
+      <ol>
+        <li>
+          <a href="javascript:;">
+            <b><img src="images/icon/icon10.png"></b>
+            <span>文明景区</span>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:;">
+            <b><img src="images/icon/icon11.png"></b>
+            <span>文明行为</span>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:;">
+            <b><img src="images/icon/icon12.png"></b>
+            <span>文明示范</span>
+          </a>
+        </li>
+      </ol>
+    </nav>
+    <section>
+      <h3><i></i><span>大鹏快讯</span></h3>
+      <div class="list">
+          <div class="list-top">
+            <div class="list-top-lf">
+              <a href="javascript:;">
+                <b><img src="images/icon/icon2.png"></b>
+                <span>工作动态</span>
+              </a>
+            </div>
+            <div class="list-top-rt">
+               <ul>
+                 <li>
+                   <a href="javascript:;">
+                    <b></b>
+                    <span>知识分享</span>
+                  </a>
+                 </li>
+                 <li>
+                   <a href="javascript:;">
+                    <b></b>
+                    <span>他山之石</span>
+                  </a>
+                 </li>
+               </ul>
+            </div>
+          </div>
+          <div class="list-bot">
+             <ul>
+                 <li>
+                   <a href="javascript:;">
+                    <b></b>
+                    <span>精彩回顾</span>
+                  </a>
+                 </li>
+                 <li>
+                   <a href="javascript:;">
+                    <b></b>
+                    <span>责任与坚持</span>
+                  </a>
+                 </li>
+               </ul>
+          </div>
+      </div>
+    </section>
+    <footer>
+       <div class="foot-left">
+          <a class="icon" href="javascript:;"></a>
+          <span>志愿者招募</span>
+       </div>
+       <div class="file-wrap">
+         <label for="myFile"></label>
+         <input id="myFile" type="file" capture=camcorder accept="image/*">
+         <p>文明随手拍</p>
+       </div>
+       <div class="foot-right">
+          <a class="icon" href="javascript:;"></a>
+          <span>联系我们</span>
+       </div>
+    </footer>
+    <script>        
+        var mySwiper = new Swiper('.swiper-container',{
+        loop: true,
+        autoplay: 5000,
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        autoplayDisableOnInteraction:false
+      });
+
+  </script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      var BH=$('ul b').height();
+      function fileChange(e){
+        var f = e.files[0];//一次只上传1个文件
+        //console.log(f);
+        var FR = new FileReader();
+        FR.readAsDataURL(f);
+        FR.onload = function(f){
+          compressImg(this.result,(BH*3),function(data){
+            //$("#newImg").attr("src",data);//保存图片压缩后的64位编码
+            var str1='<li><a href="javascript:;"><b><img src='+data+'></b><span>乱扔垃圾</span></a></li>';
+             $(".park-wrap").eq(0).children('ul').prepend(str1);
+          });
+        };
+      }
+      document.getElementById("myFile").addEventListener("change", function() {
+              fileChange(this);
+           },false);
+      function compressImg(imgData,maxHeight,onCompress){
+        if(!imgData){return false};
+        onCompress = onCompress || function(){};
+        maxHeight = maxHeight || 1200;//默认最大高度1000px
+        var canvas = document.createElement('canvas');
+        var img = new Image();
+        img.src = imgData;
+
+        img.onload = function(){
+          if(img.height>maxHeight) {//按最大高度等比缩放
+            img.width *= maxHeight / img.height;
+            img.height = maxHeight; 
+          }
+          var ctx = canvas.getContext("2d");
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          canvas.width = img.width;
+          canvas.height = img.height;
+          ctx.drawImage(img, 0, 0, img.width, img.height);
+          onCompress(canvas.toDataURL("image/jpeg"));
+          //console.log(canvas.toDataURL("image/jpeg"));
+        };
+      }
+    });
+  </script>
+</body>
+</html>

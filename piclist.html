@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>文明互动</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta content="yes" name="apple-mobile-web-app-capable" />
+  <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+  <meta content="telephone=no" name="format-detection" />
+  <link rel="stylesheet" type="text/css" href="css/wappublic.css">
+  <link rel="stylesheet" type="text/css" href="css/piclist.css">
+  <script type="text/javascript" src="js/fontSize.js"></script>
+  <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+</head>
+<body>
+    <!--section-->
+    <section>
+      <ul class="img-list" style="-webkit-transform:translateY(0);">
+        <li>
+           <p class="img-container"><img src="images/banner/01.jpg" ></p>
+           <p class="img-container"><img src="images/banner/02.jpg" ></p>
+           <p class="img-container"><img src="images/banner/03.jpg" ></p>
+           <p class="img-container"><img src="images/banner/04.jpg" ></p>
+           <p class="img-container"><img src="images/banner/pic5.jpg" ></p>
+           <p class="img-container"><img src="images/banner/pic1.jpg" ></p>
+        </li>
+        <li>
+           <p class="img-container"><img src="images/banner/01.jpg" ></p>
+           <p class="img-container"><img src="images/banner/02.jpg" ></p>
+           <p class="img-container"><img src="images/banner/03.jpg" ></p>
+           <p class="img-container"><img src="images/banner/04.jpg" ></p>
+           <p class="img-container"><img src="images/banner/pic5.jpg" ></p>
+           <p class="img-container"><img src="images/banner/pic1.jpg" ></p>
+        </li>
+        <li>
+           <p class="img-container"><img src="images/banner/01.jpg" ></p>
+           <p class="img-container"><img src="images/banner/02.jpg" ></p>
+           <p class="img-container"><img src="images/banner/03.jpg" ></p>
+           <p class="img-container"><img src="images/banner/04.jpg" ></p>
+           <p class="img-container"><img src="images/banner/pic5.jpg" ></p>
+           <p class="img-container"><img src="images/banner/pic1.jpg" ></p>
+        </li>
+    </ul>
+    </section>
+    <footer>
+       <div class="file-wrap">
+         <label for="myFile"></label>
+         <input id="myFile" type="file" capture=camcorder accept="image/*">
+         <p>文明随手拍</p>
+       </div>
+       <a class="icon" href="javascript:;"></a>
+    </footer>
+     <div class="opacity-container"></div>
+     <div class="close-container">
+       <div class="close"></div>
+     </div>
+     <div class="show-container">
+        <img src="images/banner/pic1.jpg" />
+        <div class="show-content">
+          <p>游客不文明现象，乱丢垃圾，破坏环境。</p>
+          <p>游客不文明现象，乱丢垃圾，破坏环境。</p>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+       $(document).ready(function(){
+           function position(){
+             var imgs=document.querySelectorAll('.img-container');
+             var pw=imgs[0].offsetWidth;
+             var ph=imgs[0].offsetHeight;
+             var liH=document.documentElement.clientHeight||document.body.clientHeight;
+             var liW=document.documentElement.clientWidth||document.body.clientWidth;
+             $('.img-list li').height(liH);
+             $('section').height(liH);
+             //var arr1=[0.03,0.55,0.10,0.47,0.03,0.55];
+             //var arr2=[-0.09,0.03,0.22,0.44,0.63,0.80];
+            
+             /*for(var i=0;i<imgs.length;i++){
+                 imgs[i].style.left=parseInt(liW*arr1[i])+"px";
+                 imgs[i].style.top=parseInt(liH*arr2[i])+"px";
+             }*/
+           }
+           position();
+
+           $(document).on('touchend','.img-container',function(){
+               $('.opacity-container').show();
+               $('.close-container').show();
+               $('.show-container').addClass('onshow');
+               $('.show-container').find('img').attr('src',$(this).children('img').attr('src'));
+           });
+           
+           $('.close').on('touchend',function(e){
+               e.preventDefault(); 
+               $('.show-container').removeClass('onshow');
+               $('.show-container').find('img').removeAttr('src');
+               $('.opacity-container').hide();
+               $('.close-container').hide();
+           }); 
+
+           function move(){
+              var imgList=$('.img-list')[0];
+              imgList.innerHTML=imgList.innerHTML+imgList.innerHTML;
+              var imgLi=$('.img-list li').eq(0).height();
+              var imgSize=$('.img-list li').size();
+              var imgW=$('.img-list').height(imgLi*imgSize);
+              var itimer=null;
+              var ispeed=0;
+               function moveLi(){
+                  var trans=document.querySelector('.img-list').style.WebkitTransform;
+                  var ulY=parseInt(trans.match(/\-?[0-9]+\.?[0-9]*/g )[0]);
+                  if(ulY<-imgList.offsetHeight/2){
+                      ispeed=0;
+                      $(".img-list").removeClass('animate').css("-webkit-transform",'translateY(0)');
+                  }else{
+                    ispeed--;
+                    $(".img-list").addClass('animate').css("-webkit-transform",'translateY('+ispeed+'px'+')');
+                  }
+                }
+                 clearInterval(itimer);
+                 itimer=setInterval(moveLi,60);
+                $('.img-list').on('touchstart',function(){
+                    clearInterval(itimer);
+                });
+                 $('.img-list').on('touchend',function(){
+                     itimer=setInterval(moveLi,60);
+                });
+            }
+            move();
+              
+       });
+    </script>
+   
+    <script type="text/javascript">
+    $(document).ready(function(){
+      var BH=$('ul p').height();
+      function fileChange(e){
+        var f = e.files[0];//一次只上传1个文件
+        var FR = new FileReader();
+        FR.readAsDataURL(f);
+        FR.onload = function(f){
+          compressImg(this.result,(BH*3),function(data){
+              
+          });
+        };
+      }
+      document.getElementById("myFile").addEventListener("change", function() {
+              fileChange(this);
+           },false);
+      function compressImg(imgData,maxHeight,onCompress){
+        if(!imgData){return false};
+        onCompress = onCompress || function(){};
+        maxHeight = maxHeight || 1200;//默认最大高度1000px
+        var canvas = document.createElement('canvas');
+        var img = new Image();
+        img.src = imgData;
+
+        img.onload = function(){
+          if(img.height>maxHeight) {//按最大高度等比缩放
+            img.width *= maxHeight / img.height;
+            img.height = maxHeight; 
+          }
+          var ctx = canvas.getContext("2d");
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          canvas.width = img.width;
+          canvas.height = img.height;
+          ctx.drawImage(img, 0, 0, img.width, img.height);
+          onCompress(canvas.toDataURL("image/jpeg"));
+        };
+      }
+    });
+  </script>
+  
+    
+</body>
+</html>

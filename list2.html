@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>大鹏快讯</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<link rel="stylesheet" type="text/css" href="css/wappublic.css">
+	<link rel="stylesheet" type="text/css" href="css/list2.css">
+	<script type="text/javascript" src="js/fontSize.js"></script>
+	<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+</head>
+<body>
+    <!--header-->
+    <section>
+        <!--列表1-->
+        <ul class="img-list">
+          <li>
+            <a href="javascript:;">
+               <div class="text-container">
+                  <p>工作及任务</p>
+                  <p>开展“撤桶行动”、“红袖标行动”、“袋带行动”，限制商品过度包装塑</p>
+                  <div class="time-container">
+                     <div class="times">
+                       <span>4月20日</span>
+                     </div>
+                  </div>
+               </div>
+               <div class="img-container">
+                  <img src="images/banner/pic1.jpg">
+               </div>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+               <div class="text-container">
+                  <p>工作及任务</p>
+                  <p>大鹏半岛作为深圳市著名的山海生态旅游度假胜地，每年吸引一千万次</p>
+                  <div class="time-container">
+                     <div class="times">
+                       <span>4月20日</span>
+                     </div>
+                  </div>
+               </div>
+               <div class="img-container">
+                  <img src="images/banner/pic1.jpg">
+               </div>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+               <div class="text-container">
+                  <p>工作及任务</p>
+                  <p>大鹏半岛作为深圳市著名的山海生态旅游度假胜地，每年吸引一千万次</p>
+                  <div class="time-container">
+                     <div class="times">
+                       <span>4月20日</span>
+                     </div>
+                  </div>
+               </div>
+               <div class="img-container">
+                  <img src="images/banner/pic1.jpg">
+               </div>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+               <div class="text-container">
+                  <p>工作及任务</p>
+                  <p>大鹏半岛作为深圳市著名的山海生态旅游度假胜地，每年吸引一千万次</p>
+                  <div class="time-container">
+                     <div class="times">
+                       <span>4月20日</span>
+                     </div>
+                  </div>
+               </div>
+               <div class="img-container">
+                  <img src="images/banner/pic1.jpg">
+               </div>
+            </a>
+          </li>
+        </ul>
+        
+    </section>
+    <div class="more-container">
+        <a href="javascript:;">上滑加载更多&gt;&gt;</a>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var clientHeight=document.documentElement.clientHeight;
+            window.onscroll=function(){
+            var scrollHeight=document.documentElement.scrollHeight;
+            var distance=scrollHeight-clientHeight-20;
+            if(document.body.scrollTop>=distance){
+              var str='<li><a href="javascript:;"><div class="text-container"><p>工作及任务</p><p>大鹏半岛作为深圳市著名的山海生态旅游度假胜地，每年吸引一千万次</p><div class="time-container"><div class="times"><span>4月20日</span></div></div></div><div class="img-container"><img src="images/banner/pic1.jpg"></div></a></li>';
+              $(".img-list").append(str);
+            }
+          }
+        });
+    </script>
+</body>
+</html>
